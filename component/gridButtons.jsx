@@ -18,6 +18,7 @@ const TipButton = styled(Button)({
   },
 });
 
+// Grid component for tip buttons
 export default function GridButtons({ handleTip }) {
   return (
     <Grid
@@ -27,32 +28,32 @@ export default function GridButtons({ handleTip }) {
       alignItems="center"
       spacing={2}
     >
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton onClick={handleTip} value="5">
           5%
         </TipButton>
       </Grid>
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton onClick={handleTip} value="10">
           10%
         </TipButton>
       </Grid>
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton onClick={handleTip} value="15">
           15%
         </TipButton>
       </Grid>
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton onClick={handleTip} value="25">
           25%
         </TipButton>
       </Grid>
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton onClick={handleTip} value="50">
           50%
         </TipButton>
       </Grid>
-      <Grid item md={4} sm={6}>
+      <Grid item xs={6} md={4}>
         <TipButton>Custom</TipButton>
       </Grid>
     </Grid>
