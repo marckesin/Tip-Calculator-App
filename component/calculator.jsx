@@ -1,11 +1,11 @@
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
-import Card from "@mui/material/Card";
+import styles from "../styles/Home.module.css";
 import GridButtons from "./gridButtons";
 import Input from "./input";
-import styles from "../styles/Home.module.css";
 
 const ResetButton = styled(Button)({
   textTransform: "uppercase",
