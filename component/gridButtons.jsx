@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
 import Input from "./input";
+import { styled } from "@mui/material/styles";
 
 const TipButton = styled(Button)({
   backgroundColor: "hsl(183, 100%, 15%)",
@@ -20,7 +20,7 @@ const TipButton = styled(Button)({
 });
 
 // Grid component for tip buttons
-export default function GridButtons({ handleTip, value }) {
+export default function GridButtons({ handleTip }) {
   return (
     <Grid
       container
@@ -57,7 +57,6 @@ export default function GridButtons({ handleTip, value }) {
       <Grid item xs={6} md={4}>
         <Input
           name="tip"
-          // value={value}
           onChange={handleTip}
           min={0}
           step={".01"}
