@@ -12,7 +12,10 @@ export default function Input(props) {
         name={props.name}
         id={props.id}
         value={props.value}
-        onChange={props.handleInput}
+        onChange={props.onChange}
+        placeholder={props.placeholder}
+        min={props.min}
+        step={props.step}
       />
     </div>
   );

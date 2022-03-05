@@ -27,7 +27,7 @@ const CustomButton = styled(ButtonUnstyled)({
   fontSize: "1.25rem",
   textTransform: "uppercase",
   backgroundColor: "hsl(172, 67%, 45%)",
-  borderRadius: "7px",
+  borderRadius: "5px",
   color: "hsl(186, 14%, 43%)",
   border: "none",
   width: "100%",
@@ -50,21 +50,38 @@ function ResetButtonInactive(props) {
   return <ButtonUnstyled {...props} component={CustomButton} />;
 }
 
-// Calculator component
+// Tip calculator component
 export default function Calculator() {
-  const [bill, setBill] = useState("");
-  const [tip, setTip] = useState("");
-  const [people, setPeople] = useState("");
-  const [custom, setCustom] = useState("");
+  const [allValues, setAllValues] = useState({
+    bill: "",
+    tip: "",
+    people: "",
+  });
 
-  const handleBill = event => setBill(event.target.value);
-  const handleReset = () => {
-    setBill("");
-    setTip("");
-    setPeople("");
+  const tipAmount = (
+    (allValues.bill * (allValues.tip / 100)) /
+    allValues.people
+  ).toFixed(2);
+
+  const totalAmount = (
+    allValues.bill / allValues.people +
+    (allValues.bill * (allValues.tip / 100)) / allValues.people
+  ).toFixed(2);
+
+  // Input changes and button clicks calls this function to set values
+  const handleChange = event => {
+    setAllValues({ ...allValues, [event.target.name]: event.target.value });
   };
-  const handleTip = event => setTip(event.target.value);
-  const handlePeople = event => setPeople(event.target.value);
+
+  // On click this function resets all values to initials values
+  const handleReset = () => {
+    setAllValues(prevState => ({
+      ...prevState,
+      bill: "",
+      tip: "",
+      people: "",
+    }));
+  };
 
   return (
     <Card className={styles.calculator}>
@@ -73,19 +90,25 @@ export default function Calculator() {
           text="Bill"
           name="bill"
           id="bill"
-          value={bill}
-          handleInput={handleBill}
+          value={allValues.bill}
+          onChange={handleChange}
+          min={0}
+          step={".01"}
+          placeholder={"0"}
         />
         <div>
           <p className={styles.text}>Select Tip %</p>
-          <GridButtons handleTip={handleTip} />
+          <GridButtons handleTip={handleChange} value={allValues.tip} />
         </div>
         <Input
           text="Number of People"
           name="people"
           id="people"
-          value={people}
-          handleInput={handlePeople}
+          value={allValues.people}
+          onChange={handleChange}
+          min={1}
+          step={"1"}
+          placeholder={"0"}
         />
       </div>
       <div className={styles.calculatorRight}>
@@ -94,8 +117,8 @@ export default function Calculator() {
             <p>Tip Amount</p>
             <span>/ person</span>
           </div>
-          {bill && people && tip ? (
-            <h2>${((bill * (tip / 100)) / people).toFixed(2)}</h2>
+          {allValues.bill && allValues.people > 0 && allValues.tip ? (
+            <h2>${tipAmount}</h2>
           ) : (
             <h2>$0.00</h2>
           )}
@@ -105,16 +128,14 @@ export default function Calculator() {
             <p>Total</p>
             <span>/ person</span>
           </div>
-          {bill && people && tip ? (
-            <h2>
-              ${(bill / people + (bill * (tip / 100)) / people).toFixed(2)}
-            </h2>
+          {allValues.bill && allValues.people > 0 && allValues.tip ? (
+            <h2>${totalAmount}</h2>
           ) : (
             <h2>$0.00</h2>
           )}
         </div>
         <div className={styles.button}>
-          {bill ? (
+          {allValues.bill || allValues.tip || allValues.people ? (
             <ResetButton variant="contained" onClick={handleReset}>
               Reset
             </ResetButton>
