@@ -2,7 +2,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Input from "./input";
 import { styled } from "@mui/material/styles";
-import { useState, useEffect } from "react";
 
 const TipButton = styled(Button)({
   backgroundColor: "hsl(183, 100%, 15%)",
