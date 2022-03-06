@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Input from "./input";
 import { styled } from "@mui/material/styles";
+import { useState, useEffect } from "react";
 
 const TipButton = styled(Button)({
   backgroundColor: "hsl(183, 100%, 15%)",
@@ -20,7 +21,7 @@ const TipButton = styled(Button)({
 });
 
 // Grid component for tip buttons
-export default function GridButtons({ handleTip }) {
+export default function GridButtons({ onClick, value }) {
   return (
     <Grid
       container
@@ -30,34 +31,36 @@ export default function GridButtons({ handleTip }) {
       spacing={2}
     >
       <Grid item xs={6} md={4}>
-        <TipButton onClick={handleTip} name="tip" value="5">
+        <TipButton onClick={onClick} name="tip" value="5">
           5%
         </TipButton>
       </Grid>
       <Grid item xs={6} md={4}>
-        <TipButton onClick={handleTip} name="tip" value="10">
+        <TipButton onClick={onClick} name="tip" value="10">
           10%
         </TipButton>
       </Grid>
       <Grid item xs={6} md={4}>
-        <TipButton onClick={handleTip} name="tip" value="15">
+        <TipButton onClick={onClick} name="tip" value="15">
           15%
         </TipButton>
       </Grid>
       <Grid item xs={6} md={4}>
-        <TipButton onClick={handleTip} name="tip" value="25">
+        <TipButton onClick={onClick} name="tip" value="25">
           25%
         </TipButton>
       </Grid>
       <Grid item xs={6} md={4}>
-        <TipButton onClick={handleTip} name="tip" value="50">
+        <TipButton onClick={onClick} name="tip" value="50">
           50%
         </TipButton>
       </Grid>
       <Grid item xs={6} md={4}>
         <Input
-          name="tip"
-          onChange={handleTip}
+          name="custom"
+          id="custom"
+          value={value}
+          onChange={onClick}
           min={0}
           step={".01"}
           placeholder={"Custom"}

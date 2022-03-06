@@ -54,11 +54,28 @@ $white: hsl(0, 0%, 100%);
   background-color: $light-grayish-cyan;
 }
 
+.containerInput {
+  position: relative;
+}
+
 .heading {
   font-size: 1.5rem;
   color: $very-dark-cyan;
   letter-spacing: 7px;
   margin-bottom: 4.5rem;
+}
+
+.hidden {
+  color: hsl(0, 100%, 50%);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon {
+  position: absolute;
+  top: 2.75rem;
+  left: 1rem;
 }
 
 .input {
@@ -145,6 +162,10 @@ $white: hsl(0, 0%, 100%);
     margin-top: 2rem;
     max-height: 17.5rem;
     max-width: 100%;
+  }
+
+  .heading {
+    margin: 2.5rem 0;
   }
 
   .result {

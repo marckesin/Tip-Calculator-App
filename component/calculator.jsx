@@ -1,11 +1,11 @@
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import GridButtons from "./gridButtons";
-import Input from "./input";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
+import GridButtons from "./gridButtons";
+import Input from "./input";
 
 const ResetButton = styled(Button)({
   textTransform: "uppercase",
@@ -54,8 +54,9 @@ function ResetButtonInactive(props) {
 export default function Calculator() {
   const [allValues, setAllValues] = useState({
     bill: "",
-    tip: "",
     people: "",
+    tip: "",
+    customTip: "",
   });
 
   const tipAmount = (
@@ -70,7 +71,21 @@ export default function Calculator() {
 
   // Input changes and button clicks calls this function to set values
   const handleChange = event => {
-    setAllValues({ ...allValues, [event.target.name]: event.target.value });
+    if (event.target.name === "tip") {
+      setAllValues(prevState => ({
+        ...prevState,
+        tip: event.target.value,
+        customTip: "",
+      }));
+    } else if (event.target.name === "custom") {
+      setAllValues(prevState => ({
+        ...prevState,
+        tip: event.target.value,
+        customTip: event.target.value,
+      }));
+    } else {
+      setAllValues({ ...allValues, [event.target.name]: event.target.value });
+    }
   };
 
   // On click this function resets all values to initials values
@@ -78,38 +93,48 @@ export default function Calculator() {
     setAllValues(prevState => ({
       ...prevState,
       bill: "",
-      tip: "",
       people: "",
+      tip: "",
+      customTip: "",
     }));
   };
 
   return (
     <Card className={styles.calculator}>
       <div className={styles.calculatorLeft}>
-        <Input
-          text="Bill"
-          name="bill"
-          id="bill"
-          value={allValues.bill}
-          onChange={handleChange}
-          min={0}
-          step={".01"}
-          placeholder={"0"}
-        />
+        <div className={styles.containerInput}>
+          <Input
+            text="Bill"
+            name="bill"
+            id="bill"
+            value={allValues.bill}
+            onChange={handleChange}
+            min={0}
+            step={".01"}
+            placeholder={"0"}
+          />
+          <img className={styles.icon} src="./icon-dollar.svg" />
+        </div>
         <div>
           <p className={styles.text}>Select Tip %</p>
-          <GridButtons handleTip={handleChange} value={allValues.tip} />
+          <GridButtons onClick={handleChange} value={allValues.customTip} />
         </div>
-        <Input
-          text="Number of People"
-          name="people"
-          id="people"
-          value={allValues.people}
-          onChange={handleChange}
-          min={1}
-          step={"1"}
-          placeholder={"0"}
-        />
+        <div className={styles.containerInput}>
+          <Input
+            text="Number of People"
+            name="people"
+            id="people"
+            value={allValues.people}
+            onChange={handleChange}
+            min={1}
+            step={"1"}
+            placeholder={"0"}
+          />
+          <img className={styles.icon} src="./icon-person.svg" />
+          {!allValues.people ? null : allValues.people < 1 ? (
+            <span className={styles.hidden}>Can't be zero</span>
+          ) : null}
+        </div>
       </div>
       <div className={styles.calculatorRight}>
         <div className={styles.result}>
@@ -135,7 +160,10 @@ export default function Calculator() {
           )}
         </div>
         <div className={styles.button}>
-          {allValues.bill || allValues.tip || allValues.people ? (
+          {allValues.bill ||
+          allValues.tip ||
+          allValues.people ||
+          allValues.customTip ? (
             <ResetButton variant="contained" onClick={handleReset}>
               Reset
             </ResetButton>
