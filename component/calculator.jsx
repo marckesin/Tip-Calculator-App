@@ -52,6 +52,14 @@ function ResetButtonInactive(props) {
 
 // Tip calculator component
 export default function Calculator() {
+  const [color, setColor] = useState({
+    5: "hsl(183, 100%, 15%)",
+    10: "hsl(183, 100%, 15%)",
+    15: "hsl(183, 100%, 15%)",
+    25: "hsl(183, 100%, 15%)",
+    50: "hsl(183, 100%, 15%)",
+  });
+
   const [allValues, setAllValues] = useState({
     bill: "",
     people: "",
@@ -71,20 +79,34 @@ export default function Calculator() {
 
   // Input changes and button clicks calls this function to set values
   const handleChange = event => {
-    if (event.target.name === "tip") {
+    const { name, value } = event.target;
+    const resetColor = {
+      5: "hsl(183, 100%, 15%)",
+      10: "hsl(183, 100%, 15%)",
+      15: "hsl(183, 100%, 15%)",
+      25: "hsl(183, 100%, 15%)",
+      50: "hsl(183, 100%, 15%)",
+    };
+    const selectedColor = { ...resetColor, [value]: "hsl(172, 67%, 45%)" };
+
+    if (name === "tip") {
       setAllValues(prevState => ({
         ...prevState,
-        tip: event.target.value,
+        tip: value,
         customTip: "",
       }));
-    } else if (event.target.name === "custom") {
+
+      setColor(selectedColor);
+    } else if (name === "custom") {
       setAllValues(prevState => ({
         ...prevState,
-        tip: event.target.value,
-        customTip: event.target.value,
+        tip: value,
+        customTip: value,
       }));
+
+      setColor(resetColor);
     } else {
-      setAllValues({ ...allValues, [event.target.name]: event.target.value });
+      setAllValues({ ...allValues, [name]: value });
     }
   };
 
@@ -96,6 +118,15 @@ export default function Calculator() {
       people: "",
       tip: "",
       customTip: "",
+    }));
+
+    setColor(prevState => ({
+      ...prevState,
+      5: "hsl(183, 100%, 15%)",
+      10: "hsl(183, 100%, 15%)",
+      15: "hsl(183, 100%, 15%)",
+      25: "hsl(183, 100%, 15%)",
+      50: "hsl(183, 100%, 15%)",
     }));
   };
 
@@ -127,7 +158,11 @@ export default function Calculator() {
         </div>
         <div>
           <p className={styles.text}>Select Tip %</p>
-          <GridButtons onClick={handleChange} value={allValues.customTip} />
+          <GridButtons
+            onClick={handleChange}
+            value={allValues.customTip}
+            color={color}
+          />
         </div>
         <div className={styles.containerInput}>
           <Input

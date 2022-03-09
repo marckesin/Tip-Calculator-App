@@ -1,4 +1,4 @@
-![Next JS](https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=flat&logo=vercel&logoColor=white) [![CodeFactor](https://www.codefactor.io/repository/github/marckesin/tip-calculator-app/badge)](https://www.codefactor.io/repository/github/marckesin/tip-calculator-app) [![DeepSource](https://deepsource.io/gh/marckesin/Tip-Calculator-App.svg/?label=active+issues&token=pWr3LmFGZ4e8VuO-cymPzyZH)](https://deepsource.io/gh/marckesin/Tip-Calculator-App/?ref=repository-badge)
+![Next JS](https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=flat&logo=vercel&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=flat&logo=mui&logoColor=white) [![CodeFactor](https://www.codefactor.io/repository/github/marckesin/tip-calculator-app/badge)](https://www.codefactor.io/repository/github/marckesin/tip-calculator-app) [![DeepSource](https://deepsource.io/gh/marckesin/Tip-Calculator-App.svg/?label=active+issues&token=pWr3LmFGZ4e8VuO-cymPzyZH)](https://deepsource.io/gh/marckesin/Tip-Calculator-App/?ref=repository-badge)
 
 # Frontend Mentor - Tip calculator app solution
 
@@ -39,11 +39,10 @@ Users should be able to:
 
 - [Next.js](https://nextjs.org/) - React framework
 - [React](https://reactjs.org/) - JS library
-- [Styled Components](https://styled-components.com/) - For styles
+- [Material Design](https://mui.com/) - React UI library
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
 
 ## Author
