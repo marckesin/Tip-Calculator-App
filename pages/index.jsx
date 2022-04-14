@@ -9,7 +9,10 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Tip Calculator</title>
-        <meta name="description" content="Tip calculator app." />
+        <meta
+          name="description"
+          content="This is a solution to the: Tip calculator app challenge on Frontend Mentor"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
